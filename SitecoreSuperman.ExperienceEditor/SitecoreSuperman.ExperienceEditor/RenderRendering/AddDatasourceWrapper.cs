@@ -32,7 +32,7 @@ namespace SitecoreSuperman.ExperienceEditor.RenderRendering
         protected IMarker GetMarker(Rendering rendering)
         {
             // If the Rendering's Datasource Template field is empty, we assume that it does not need a Datasource to function.
-            if (!RenderingExtensions.RenderingRequiresDatasource(rendering.RenderingItem))
+            if (!RenderingExtensions.RequiresDatasource(rendering.RenderingItem))
                 return null;
 
             // If the rendering has a valid Datasource, do not add the Wrapper otherwise add it.

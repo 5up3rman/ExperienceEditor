@@ -11,7 +11,7 @@ namespace SitecoreSuperman.ExperienceEditor.GetRenderer
             var rendering = args.Rendering;
             var database = Sitecore.Context.Database;
 
-            if (RenderingExtensions.RenderingRequiresDatasource(rendering.RenderingItem) &&
+            if (RenderingExtensions.RequiresDatasource(rendering.RenderingItem) &&
                 !RenderingExtensions.DatasourceExists(database, rendering.DataSource) &&
                 !rendering.RenderingType.Equals("Layout"))
             {

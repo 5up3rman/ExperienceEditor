@@ -1,0 +1,16 @@
+﻿.ee.set-datasource {
+    color: #fff;
+    padding: 10px 45px;
+    font-weight: bold;
+    font-size: 14px;
+    background-color: #ca241c;
+}
+
+    .ee.set-datasource i.alert-ico {
+        display: inline-block;
+        vertical-align: top;
+        width: 24px;
+        height: 24px;
+        background: transparent url('/sitecore/shell/client/Speak/Assets/img/Speak/MessageBar/sc-message-bar-icons.png') no-repeat 0 -50px;
+        margin: 0 10px 0 -30px;
+    }

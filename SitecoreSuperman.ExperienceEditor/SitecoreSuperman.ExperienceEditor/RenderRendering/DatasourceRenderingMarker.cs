@@ -9,7 +9,7 @@ using Sitecore.Web.UI.WebControls;
 
 namespace SitecoreSuperman.ExperienceEditor.RenderRendering
 {
-  public  class DatasourceRenderingMarker : Sitecore.Mvc.ExperienceEditor.Presentation.IMarker
+    public class DatasourceRenderingMarker : Sitecore.Mvc.ExperienceEditor.Presentation.IMarker
     {
         private RenderingContext RenderingContext { get; set; }
         private string RenderingName { get; set; }
@@ -40,14 +40,17 @@ namespace SitecoreSuperman.ExperienceEditor.RenderRendering
 
         public string GetEnd()
         {
-            return this.ClientData != null ? Placeholder.GetControlEndMarker(this.ClientData, this.ControlId) : string.Empty;
+            return this.ClientData != null
+                ? Placeholder.GetControlEndMarker(this.ClientData, this.ControlId)
+                : string.Empty;
         }
 
-      protected ChromeData GetClientData()
+        protected ChromeData GetClientData()
         {
             var args = new GetChromeDataArgs("rendering", this.RenderingContext.Rendering.Item);
-            var renderingReference = this.RenderingContext.Rendering.GetRenderingReference(Context.Language, this.RenderingContext.PageContext.Database);
-            args.CustomData["renderingReference"] = (object)renderingReference;
+            var renderingReference = this.RenderingContext.Rendering.GetRenderingReference(Context.Language,
+                this.RenderingContext.PageContext.Database);
+            args.CustomData["renderingReference"] = (object) renderingReference;
             GetChromeDataPipeline.Run(args);
 
             return args.ChromeData;

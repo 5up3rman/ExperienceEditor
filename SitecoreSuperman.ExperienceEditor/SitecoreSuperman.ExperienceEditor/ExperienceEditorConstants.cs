@@ -4,7 +4,7 @@
     {
         public struct Views
         {
-            public const string BlankViewPath = "~/views/blank.cshtml";
+            public const string BlankViewPath = "~/Views/ExperienceEditor/Blank.cshtml";
         }
 
         public struct Rendering

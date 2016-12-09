@@ -1,8 +1,6 @@
-﻿using System.Text.RegularExpressions;
-using System.Web;
-using System.IO;
-using Sitecore;
+﻿using Sitecore;
 using Sitecore.Data;
+using Sitecore.Diagnostics;
 using Sitecore.Mvc.Pipelines.Response.GetRenderer;
 using Sitecore.Mvc.Presentation;
 
@@ -24,11 +22,7 @@ namespace SitecoreSuperman.ExperienceEditor.GetRenderer
             
             if (string.IsNullOrWhiteSpace(path))
                 return null;
-
-            var eePath = Regex.Replace(path, @"^(.*)\.cshtml$", "$1_EE.cshtml");
-            path = File.Exists(HttpContext.Current.Server.MapPath(eePath)) &&
-                   Context.PageMode.IsExperienceEditorEditing ? eePath : path;
-
+            
             return new ViewRenderer
             {
                 ViewPath = path,
@@ -45,13 +39,12 @@ namespace SitecoreSuperman.ExperienceEditor.GetRenderer
         /// <returns></returns>
         private string GetPath(Database database, Rendering rendering, string path)
         {
-            if (RenderingExtensions.RenderingRequiresDatasource(rendering.RenderingItem) &&
-                !RenderingExtensions.DatasourceExists(database, rendering.DataSource))
-            {
-                return ExperienceEditorConstants.Views.BlankViewPath;
-            }
+            if (!RenderingExtensions.RequiresDatasource(rendering.RenderingItem) ||
+                RenderingExtensions.DatasourceExists(database, rendering.DataSource))
+                return path;
 
-            return path;
+            Log.Warn($"Datasource Error:  There is an issue with the datasource on the rendering: {rendering.RenderingItem.DisplayName}, Path: {rendering.Item.Paths.ContentPath}.", this);
+            return ExperienceEditorConstants.Views.BlankViewPath;
         }
     }
 }

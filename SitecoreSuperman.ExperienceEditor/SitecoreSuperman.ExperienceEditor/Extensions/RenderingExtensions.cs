@@ -29,7 +29,7 @@ namespace SitecoreSuperman.ExperienceEditor
         /// </summary>
         /// <param name="renderingItem"></param>
         /// <returns></returns>
-        public static bool RenderingRequiresDatasource(RenderingItem renderingItem)
+        public static bool RequiresDatasource(RenderingItem renderingItem)
         {
             return !string.IsNullOrEmpty(renderingItem.InnerItem[ExperienceEditorConstants.Rendering.DatasourceTemplateFieldId]);
         }
@@ -58,7 +58,7 @@ namespace SitecoreSuperman.ExperienceEditor
             }
             catch (Exception ex)
             {
-                Log.Error(Sitecore.StringExtensions.StringExtensions.FormatWith("Failed to parse rendering xml definition for rendering '{0}'", (object)rendering.RenderingItemPath), ex, rendering.GetType());
+                Log.Error($"Failed to parse rendering xml definition for rendering '{rendering.RenderingItemPath}'", ex, rendering.GetType());
                 return null;
             }
 
