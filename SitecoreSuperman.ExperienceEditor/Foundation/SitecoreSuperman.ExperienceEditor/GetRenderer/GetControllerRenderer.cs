@@ -19,7 +19,7 @@ namespace SitecoreSuperman.ExperienceEditor.GetRenderer
                 args.Result = this.GetRenderer(rendering, args);
 
                 // Log for funzies
-                Log.Warn($"EXPERIENCE EDITOR - Datasource Error: There is an issue with the datasource on the rendering: {rendering.RenderingItem.DisplayName}, Path: {rendering.Item.Paths.ContentPath}.", this);
+                Log.Warn($"EXPERIENCE EDITOR - Datasource needs set on the Controller Rendering: {rendering.RenderingItem.DisplayName}, Path: {rendering.Item.Paths.FullPath}, ID: {rendering.Item.ID}.", this);
                 return;
             }
 

@@ -50,7 +50,7 @@ namespace SitecoreSuperman.ExperienceEditor.GetRenderer
                 RenderingExtensions.DatasourceExists(database, rendering.DataSource))
                 return path;
 
-            Log.Warn($"EXPERIENCE EDITOR - Datasource Error: There is an issue with the datasource on the rendering: {rendering.RenderingItem.DisplayName}, Path: {rendering.Item.Paths.ContentPath}.", this);
+            Log.Warn($"EXPERIENCE EDITOR - Datasource needs set on the View Rendering: {rendering.RenderingItem.DisplayName}, Path: {rendering.Item.Paths.FullPath}, ID: {rendering.Item.ID}.", this);
             return ExperienceEditorConstants.Views.BlankViewPath;
         }
     }
