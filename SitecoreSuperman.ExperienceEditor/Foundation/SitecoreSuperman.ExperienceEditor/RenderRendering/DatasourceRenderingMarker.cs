@@ -30,9 +30,9 @@ namespace SitecoreSuperman.ExperienceEditor.RenderRendering
                 return string.Empty;
 
             var sb = new StringBuilder();
-            sb.AppendLine("<div class\"ee set-datasource\">");
-            sb.AppendLine(" <i class=\"alert-ico\"></i>");
-            sb.AppendLine($" <span class=\"message-bar\">{Translate.Text("Please set the Datasource on")} {RenderingName}</span>");
+            sb.AppendLine("<div class=\"ee set-datasource\">");
+            sb.AppendLine("<i class=\"alert-ico\"></i>");
+            sb.AppendLine($"<span class=\"message-bar\">{Translate.Text("Please set the Datasource on")} {RenderingName}</span>");
             sb.AppendLine("</div>");
 
             return string.Concat(Placeholder.GetControlStartMarker(this.ControlId, this.ClientData, true), sb.ToString());
