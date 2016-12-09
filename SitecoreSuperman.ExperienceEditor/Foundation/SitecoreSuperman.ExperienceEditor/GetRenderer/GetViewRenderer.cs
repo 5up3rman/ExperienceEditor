@@ -1,4 +1,5 @@
-﻿using Sitecore;
+﻿using System.Text.RegularExpressions;
+using Sitecore;
 using Sitecore.Data;
 using Sitecore.Diagnostics;
 using Sitecore.Mvc.Pipelines.Response.GetRenderer;
@@ -22,7 +23,13 @@ namespace SitecoreSuperman.ExperienceEditor.GetRenderer
             
             if (string.IsNullOrWhiteSpace(path))
                 return null;
-            
+
+            // Find the Experience Editor specific view
+            var eePath = Regex.Replace(path, @"^(.*)\.cshtml$", "$1_EE.cshtml");
+            path = System.IO.File.Exists(System.Web.HttpContext.Current.Server.MapPath(eePath)) &&
+                   Context.PageMode.IsExperienceEditorEditing
+                ? eePath : path;
+
             return new ViewRenderer
             {
                 ViewPath = path,
@@ -43,7 +50,7 @@ namespace SitecoreSuperman.ExperienceEditor.GetRenderer
                 RenderingExtensions.DatasourceExists(database, rendering.DataSource))
                 return path;
 
-            Log.Warn($"Datasource Error:  There is an issue with the datasource on the rendering: {rendering.RenderingItem.DisplayName}, Path: {rendering.Item.Paths.ContentPath}.", this);
+            Log.Warn($"EXPERIENCE EDITOR - Datasource Error: There is an issue with the datasource on the rendering: {rendering.RenderingItem.DisplayName}, Path: {rendering.Item.Paths.ContentPath}.", this);
             return ExperienceEditorConstants.Views.BlankViewPath;
         }
     }
