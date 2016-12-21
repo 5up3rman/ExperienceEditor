@@ -3,7 +3,7 @@ using Sitecore.Mvc.ExperienceEditor.Presentation;
 using Sitecore.Mvc.Pipelines.Response.RenderRendering;
 using Sitecore.Mvc.Presentation;
 
-namespace SitecoreSuperman.ExperienceEditor.RenderRendering
+namespace Paragon.Foundation.ExperienceEditor.RenderRendering
 {
     public class AddDatasourceWrapper : Sitecore.Mvc.ExperienceEditor.Pipelines.Response.RenderRendering.AddWrapper
     {
@@ -29,14 +29,14 @@ namespace SitecoreSuperman.ExperienceEditor.RenderRendering
             args.Disposables.Insert(index, new Wrapper(args.Writer, marker));
         }
 
-        protected IMarker GetMarker(Rendering rendering)
+        protected IMarker GetMarker(Rendering rendering )
         {
             // If the Rendering's Datasource Template field is empty, we assume that it does not need a Datasource to function.
             if (!RenderingExtensions.RequiresDatasource(rendering.RenderingItem))
                 return null;
 
             // If the rendering has a valid Datasource, do not add the Wrapper otherwise add it.
-            return !RenderingExtensions.DatasourceExists(Context.ContentDatabase, rendering.DataSource)
+            return Context.ContentDatabase.GetItem(rendering.DataSource) == null
                 ? new DatasourceRenderingMarker(RenderingContext.Current, rendering.RenderingItem.DisplayName)
                 : null;
         }
