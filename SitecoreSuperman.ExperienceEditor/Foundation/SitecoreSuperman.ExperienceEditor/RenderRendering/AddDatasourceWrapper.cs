@@ -3,7 +3,7 @@ using Sitecore.Mvc.ExperienceEditor.Presentation;
 using Sitecore.Mvc.Pipelines.Response.RenderRendering;
 using Sitecore.Mvc.Presentation;
 
-namespace Paragon.Foundation.ExperienceEditor.RenderRendering
+namespace SitecoreSuperman.ExperienceEditor.RenderRendering
 {
     public class AddDatasourceWrapper : Sitecore.Mvc.ExperienceEditor.Pipelines.Response.RenderRendering.AddWrapper
     {
